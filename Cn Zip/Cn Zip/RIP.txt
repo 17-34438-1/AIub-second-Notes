@@ -1,0 +1,20 @@
+Mon Feb 17 09:24:51 2020   Router0(1)(1)   Router>en
+Mon Feb 17 09:24:55 2020   Router0(1)(1)   Router#conf t
+Mon Feb 17 09:25:14 2020   Router0(1)(1)   Router(config)#do show ip route
+Mon Feb 17 09:26:28 2020   Router0(1)(1)   Router(config)#router rip
+Mon Feb 17 09:26:31 2020   Router0(1)(1)   Router(config-router)#version 2
+Mon Feb 17 09:26:55 2020   Router0(1)(1)   Router(config-router)#network 192.168.10.0
+Mon Feb 17 09:27:02 2020   Router0(1)(1)   Router(config-router)#network 200.0.0.4
+Mon Feb 17 09:27:05 2020   Router0(1)(1)   Router(config-router)#no auto-summary 
+Mon Feb 17 09:27:07 2020   Router0(1)(1)   Router(config-router)#exit
+Mon Feb 17 09:28:21 2020   Router1(1)(1)   Router>en
+Mon Feb 17 09:28:23 2020   Router1(1)(1)   Router#conf t
+Mon Feb 17 09:28:26 2020   Router1(1)(1)   Router(config)#do show ip route
+Mon Feb 17 09:28:39 2020   Router1(1)(1)   Router(config)#router rip
+Mon Feb 17 09:28:41 2020   Router1(1)(1)   Router(config-router)#version 2
+Mon Feb 17 09:28:49 2020   Router1(1)(1)   Router(config-router)#network 192.168.10.32
+Mon Feb 17 09:28:54 2020   Router1(1)(1)   Router(config-router)#network 200.0.0.4
+Mon Feb 17 09:28:59 2020   Router1(1)(1)   Router(config-router)#no auto-summary 
+Mon Feb 17 09:29:01 2020   Router1(1)(1)   Router(config-router)#exit
+Mon Feb 17 09:29:47 2020   Router0(1)(1)   Router(config)#do show ip route
+Mon Feb 17 09:30:56 2020   Router1(1)(1)   Router(config)#do show ip route

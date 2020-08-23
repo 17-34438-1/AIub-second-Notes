@@ -1,0 +1,20 @@
+
+Sat Mar 14 08:57:27 2020   Router0(1)   Router(config)#router ospf ?
+Sat Mar 14 08:57:45 2020   Router0(1)   Router(config)#router ospf 1
+Sat Mar 14 08:58:27 2020   Router0(1)   Router(config-router)#network 192.168.10.0 0.0.0.127 area ?
+Sat Mar 14 08:59:34 2020   Router0(1)   Router(config-router)#network 192.168.10.0 0.0.0.127 area 0
+Sat Mar 14 09:00:16 2020   Router0(1)   Router(config-router)#network 200.0.0.0. 0.0.0.3 area 0
+Sat Mar 14 09:00:25 2020   Router0(1)   Router(config-router)#network 200.0.0.0.0.0.0.3 area 0
+Sat Mar 14 09:00:43 2020   Router0(1)   Router(config-router)#network 200.0.0.0 0.0.0.3 area 0
+Sat Mar 14 09:00:46 2020   Router0(1)   Router(config-router)#exit
+Sat Mar 14 09:01:07 2020   Router1(1)   Router(config)#router ospf 1
+Sat Mar 14 09:01:16 2020   Router1(1)   Router(config-router)#network 200.0.0.0 0.0.0.3 area 0
+Sat Mar 14 09:01:27 2020   Router1(1)   Router(config-router)#network 200.0.0.4 0.0.0.
+Sat Mar 14 09:01:31 2020   Router1(1)   Router(config-router)#network 200.0.0.4 0.0.0.3 area 0
+Sat Mar 14 09:02:02 2020   Router1(1)   Router(config-router)#network 192.168.10.128 0.0.0.63 area 0
+Sat Mar 14 09:02:04 2020   Router1(1)   Router(config-router)#exit
+Sat Mar 14 09:02:13 2020   Router2(1)   Router(config)#router ospf 1
+Sat Mar 14 09:02:21 2020   Router2(1)   Router(config-router)#network 200.0.0.4 0.0.0.3 area 0
+Sat Mar 14 09:03:55 2020   Router2(1)   Router(config-router)#network 192.168.10.192 0.0.0.31 area 0
+Sat Mar 14 09:03:57 2020   Router2(1)   Router(config-router)#exit
+Sat Mar 14 09:04:36 2020   Router0(1)   Router(config)#do show ip route

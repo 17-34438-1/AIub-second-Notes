@@ -1,0 +1,74 @@
+#include <iostream>
+using namespace std;
+
+const int size = 5;
+int arr[size];
+int front = 0, rear = 0;
+
+void enque(int value)
+{
+	int next_rear = (rear + 1) % size;
+	if(next_rear == front)
+	{
+		cout << "Queue Full" << endl;
+	}
+	else
+	{
+		arr[rear] = value;
+		rear = next_rear;
+	}
+}
+
+void deque()
+{
+	if(front == rear)
+	{
+		cout << "Queue Empty" << endl;
+	}
+	else
+	{
+		front = (front + 1) % size;
+	}
+}
+
+void print()
+{
+	cout << "Queue: ";
+	for(int i = front; i != rear; i = (i + 1) % size)
+	{
+		cout << arr[i] << "  ";
+	}
+	cout << endl;
+}
+
+int main()
+{
+	enque(5);
+	print();
+	enque(7);
+	print();
+	enque(9);
+	print();
+	enque(1);
+	print();
+	enque(3);
+	print();
+	enque(8);
+	print();
+	deque();
+	print();
+	deque();
+	print();
+	deque();
+	print();
+	deque();
+	print();
+	deque();
+	print();
+	deque();
+	print();
+	enque(100);
+	print();
+
+	return 0;
+}

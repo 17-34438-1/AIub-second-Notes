@@ -1,0 +1,94 @@
+#include <iostream>
+using namespace std;
+
+int size = 1;
+int *arr = new int[size];
+int top = -1;
+
+void resize()
+{
+	cout << "Old size:" << size << endl;
+	int *newarr = new int[size * 2];
+	for(int i = 0; i <= top; i++)
+	{
+		newarr[i] = arr[i];
+	}
+	size = size * 2;
+	
+	cout << "Resizing complete. New Size: " << size << endl;
+
+	delete [] arr;
+	arr = newarr;
+}
+
+void push(int value)
+{
+	if(top < size - 1)
+	{
+		top++;
+		arr[top] = value;
+	}
+	else
+	{
+		cout << "Stack Full. Resizing ....." << endl;
+		resize();
+		top++;
+		arr[top] = value;
+	}
+}
+
+void pop()
+{
+	if(top <= -1)
+	{
+		cout << "cannot pop, stack empty" << endl;
+	}
+	else
+	{
+		top--;
+	}
+}
+
+void print()
+{
+	cout << "Current Stack: ";
+	for(int i = 0; i <= top; i++)
+	{
+		cout << arr[i] << "  ";
+	}
+	cout << endl;
+}
+
+int main()
+{
+	
+	push(5);
+	print();
+	push(2);
+	print();
+	push(9);
+	print();
+	push(1);
+	print();
+	push(7);
+	print();
+	push(8);
+	print();
+	push(3);
+	print();
+	pop();
+	print();
+	pop();
+	print();
+	pop();
+	print();
+	pop();
+	print();
+	pop();
+	print();
+	pop();
+	print();
+	push(15);
+	print();
+	return 0;
+}

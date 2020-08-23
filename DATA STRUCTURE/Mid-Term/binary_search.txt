@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+const int size = 10;
+int arr[size] = {4, 12, 26, 34, 42, 51, 63, 78, 85, 97};
+int count = 0;
+
+int binary_search(int startIndex, int endIndex, int value)
+{
+	int midIndex = (startIndex + endIndex) / 2;
+	if(arr[midIndex] == value)
+	{
+		return midIndex;
+	}
+	else if(startIndex >= endIndex)
+	{
+		return -1;
+	}
+	else if(value < arr[midIndex])
+	{
+		return binary_search(startIndex, midIndex-1, value);
+	}
+	else
+	{
+		return binary_search(midIndex+1, endIndex, value);
+	}
+}
+
+int main()
+{
+	int r = binary_search(0, size-1, 85);
+	if(r < 0)
+	{
+		cout << "Value not found" << endl;
+	}
+	else
+	{
+		cout << "Found at " << r << " index" << endl;
+		cout << count << " search required" << endl;
+	}
+	return 0;
+}

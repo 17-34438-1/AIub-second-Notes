@@ -1,0 +1,74 @@
+#include <iostream>
+using namespace std;
+
+const int size = 10;
+int arr[size];
+int top = -1;
+
+void push(int value)
+{
+	if(top < size - 1)
+	{
+		top++;
+		arr[top] = value;
+	}
+	else
+	{
+		cout << "cannot push, stack full" << endl;
+	}
+}
+
+void pop()
+{
+	if(top <= -1)
+	{
+		cout << "cannot pop, stack empty" << endl;
+	}
+	else
+	{
+		top--;
+	}
+}
+
+void print()
+{
+	cout << "Current Stack: ";
+	for(int i = 0; i <= top; i++)
+	{
+		cout << arr[i] << "  ";
+	}
+	cout << endl;
+}
+
+int main()
+{
+	push(5);
+	print();
+	push(2);
+	print();
+	push(9);
+	print();
+	push(1);
+	print();
+	push(7);
+	print();
+	push(8);
+	print();
+	push(3);
+	print();
+	pop();
+	print();
+	pop();
+	print();
+	pop();
+	print();
+	pop();
+	print();
+	pop();
+	print();
+	pop();
+	print();
+	push(15);
+	print();
+	return 0;
+}

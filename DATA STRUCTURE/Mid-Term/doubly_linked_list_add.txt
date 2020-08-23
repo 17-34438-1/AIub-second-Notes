@@ -1,0 +1,193 @@
+#include <iostream>
+using namespace std;
+
+struct Node
+{
+	int data;
+	Node* next;
+	Node* prev;
+};
+
+Node* Root = NULL;
+
+void AddLast(int value)
+{
+	Node* tempnode = new Node;
+	tempnode->data = value;
+	tempnode->next = NULL;
+	tempnode->prev = NULL;
+
+	if(Root == NULL)
+	{
+		Root = tempnode;
+	}
+	else
+	{
+		Node* t = Root;
+		while(t->next != NULL)
+		{
+			t = t->next;
+		}
+		t->next = tempnode;
+		tempnode->prev = t;
+	}
+}
+void AddFirst(int value)
+{
+	Node* tempnode = new Node;
+	tempnode->data = value;
+	tempnode->next = NULL;
+	tempnode->prev = NULL;
+
+	if(Root == NULL)
+	{
+		Root = tempnode;
+	}
+	else
+	{
+		tempnode->next = Root;
+		Root->prev = tempnode;
+		Root = tempnode;
+	}
+}
+void AddSorted(int value)
+{
+	Node* tempnode = new Node;
+	tempnode->data = value;
+	tempnode->next = NULL;
+	tempnode->prev = NULL;
+
+	if(Root == NULL)
+	{
+		Root = tempnode;
+	}
+	else if(value < Root->data)
+	{
+		tempnode->next = Root;
+		Root->prev = tempnode;
+		Root = tempnode;
+		//AddFirst(value);
+	}
+	else if(Root->next == NULL)
+	{
+		Root->next = tempnode;
+		tempnode->prev = Root;
+		//AddLast(value);
+	}
+	else
+	{
+		Node* t = Root;
+		while(t->next != NULL && t->next->data < value)
+		{
+			t = t->next;
+		}
+		if(t->next == NULL)
+		{
+			t->next = tempnode;
+			tempnode->prev = t;
+			//AddLast(value);
+		}
+		else
+		{
+			tempnode->next = t->next;
+			tempnode->prev = t;
+			t->next->prev = tempnode;
+			t->next = tempnode;
+		}
+	}
+}
+void print()
+{
+	cout << "Current List: ";
+	Node* t = Root;
+	while(t != NULL)
+	{
+		cout << t->data << " <-> ";
+		t = t->next;
+	}
+	cout << endl;
+}
+void RemoveFirst()
+{
+	if(Root == NULL)
+	{
+		cout << "List is empty" << endl;
+	}
+	else
+	{
+		Root = Root->next;
+	}
+}
+void RemoveLast()
+{
+	if(Root == NULL)
+	{
+		cout << "List is empty" << endl;
+	}
+	else if(Root->next == NULL)
+	{
+		Root = NULL;
+	}
+	else
+	{
+		Node* t = Root;
+		while(t->next->next != NULL)
+		{
+			t = t->next;
+		}
+		t->next = NULL;
+	}
+}
+
+void RemoveValue(int value)
+{
+	if(Root == NULL)
+	{
+		cout << "List is empty" << endl;
+	}
+	else if(Root->data == value)
+	{
+		Root = Root->next;
+		//RemoveFirst();
+	}
+	else if(Root->next == NULL)
+	{
+		cout << "Value not found" << endl;
+	}
+	else
+	{
+		Node* t = Root;
+		while(t->next != NULL && t->next->data != value)
+		{
+			t = t->next;
+		}
+		if(t->next == NULL)
+		{
+			cout << "Value not found" << endl;
+		}
+		else
+		{
+			t->next = t->next->next;
+		}
+	}
+}
+int main()
+{
+
+	AddSorted(5);
+	print();
+	AddSorted(7);
+	print();
+	AddSorted(2);
+	print();
+	AddSorted(9);
+	print();
+	AddSorted(4);
+	print();
+	AddSorted(8);
+	print();
+	AddSorted(3);
+	print();
+
+	return 0;
+}

@@ -1,0 +1,40 @@
+Sun Mar 8 10:33:38 2020   Router0   Router>en
+Sun Mar 8 10:33:39 2020   Router0   Router#conf t
+Sun Mar 8 10:33:42 2020   Router0   Router(config)#int f0/0
+Sun Mar 8 10:33:55 2020   Router0   Router(config-if)#ip address 192.168.1.1 255.255.255.0
+Sun Mar 8 10:33:57 2020   Router0   Router(config-if)#no shutdown 
+Sun Mar 8 10:33:58 2020   Router0   Router(config-if)#exit
+Sun Mar 8 10:34:06 2020   Router1   Router>en
+Sun Mar 8 10:34:08 2020   Router1   Router#conf t
+Sun Mar 8 10:34:12 2020   Router1   Router(config)#int f0/0
+Sun Mar 8 10:34:21 2020   Router1   Router(config-if)#ip address 192.168.2.1 255.255.255.128
+Sun Mar 8 10:34:22 2020   Router1   Router(config-if)#no shutdown 
+Sun Mar 8 10:34:24 2020   Router1   Router(config-if)#exit
+Sun Mar 8 10:34:33 2020   Router0   Router(config)#int s0/0/0
+Sun Mar 8 10:34:43 2020   Router0   Router(config-if)#ip address 200.0.0.1 255.255.255.252
+Sun Mar 8 10:34:51 2020   Router0   Router(config-if)#clock rate 64000
+Sun Mar 8 10:34:54 2020   Router0   Router(config-if)#bandwidth 64
+Sun Mar 8 10:34:56 2020   Router0   Router(config-if)#no shutdown 
+Sun Mar 8 10:34:58 2020   Router0   Router(config-if)#exit
+Sun Mar 8 10:35:06 2020   Router1   Router(config)#int s0/0/0
+Sun Mar 8 10:35:14 2020   Router1   Router(config-if)#ip address 200.0.0.2 255.255.255.252
+Sun Mar 8 10:35:16 2020   Router1   Router(config-if)#no shutdown 
+Sun Mar 8 10:35:18 2020   Router1   Router(config-if)#exit
+Sun Mar 8 12:31:55 2020   Router0   Router>en
+Sun Mar 8 12:32:01 2020   Router0   Router#show ip route
+Sun Mar 8 12:32:08 2020   Router0   Router#conf t
+Sun Mar 8 12:32:12 2020   Router0   Router(config)#router eigrp ?
+Sun Mar 8 12:32:42 2020   Router0   Router(config)#router eigrp 1
+Sun Mar 8 12:32:59 2020   Router0   Router(config-router)#network 192.168.1.0 0.0.0.255
+Sun Mar 8 12:33:12 2020   Router0   Router(config-router)#network 200.0.0.0 0.0.0.3
+Sun Mar 8 12:33:26 2020   Router0   Router(config-router)#exit
+Sun Mar 8 12:33:34 2020   Router1   Router>en
+Sun Mar 8 12:33:36 2020   Router1   Router#show ip route
+Sun Mar 8 12:33:42 2020   Router1   Router#conf t
+Sun Mar 8 12:33:52 2020   Router1   Router(config)#router eigrp 1
+Sun Mar 8 12:34:01 2020   Router1   Router(config-router)#network 200.0.0.0 0.0.0.3
+Sun Mar 8 12:34:40 2020   Router1   Router(config-router)#network 192.168.2.0 0.0.0.127
+Sun Mar 8 12:34:42 2020   Router1   Router(config-router)#exit
+Sun Mar 8 12:35:14 2020   Router0   Router(config)#do show ip route
+Sun Mar 8 12:36:18 2020   Router1   Router(config)#do show ip route
+Sun Mar 8 12:37:27 2020   Router0   Router(config)#router eigrp ?

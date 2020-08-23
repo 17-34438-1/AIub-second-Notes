@@ -1,0 +1,23 @@
+Sun Feb 9 12:45:39 2020   Router0   Router>enable 
+Sun Feb 9 12:46:00 2020   Router0   Router#configure terminal 
+Sun Feb 9 12:47:09 2020   Router0   Router(config)#interface f0/0
+Sun Feb 9 12:48:16 2020   Router0   Router(config-if)#ip address 192.168.10.1 255.255.255.224 (Default Gateaway, Subnet)
+Sun Feb 9 12:48:42 2020   Router0   Router(config-if)#no shutdown 
+Sun Feb 9 12:49:09 2020   Router0   Router(config-if)#exit
+Sun Feb 9 12:49:41 2020   Router1   Router>en
+Sun Feb 9 12:49:42 2020   Router1   Router#conf t
+Sun Feb 9 12:49:51 2020   Router1   Router(config)#int f0/0
+Sun Feb 9 12:50:04 2020   Router1   Router(config-if)#ip address 192.168.10.33 255.255.255.224 (Default Gateaway, Subnet)
+Sun Feb 9 12:50:07 2020   Router1   Router(config-if)#no shutdown 
+Sun Feb 9 12:50:10 2020   Router1   Router(config-if)#exit
+Sun Feb 9 12:51:05 2020   Router0   Router(config)#interface s0/0/0
+Sun Feb 9 12:51:23 2020   Router0   Router(config-if)#ip address 200.0.0.5 255.255.255.252 (Router IP, Router Subnet)
+Sun Feb 9 12:52:02 2020   Router0   Router(config-if)#clock rate 64000
+Sun Feb 9 12:52:08 2020   Router0   Router(config-if)#bandwidth 64
+Sun Feb 9 12:52:24 2020   Router0   Router(config-if)#no shutdown 
+Sun Feb 9 12:52:32 2020   Router0   Router(config-if)#exit
+Sun Feb 9 12:52:50 2020   Router1   Router(config)#int s0/0/0
+Sun Feb 9 12:53:00 2020   Router1   Router(config-if)#ip address 200.0.0.6 255.255.255.252 (Router IP, Router Subnet)
+Sun Feb 9 12:53:27 2020   Router1   Router(config-if)#no shutdown 
+Sun Feb 9 12:53:38 2020   Router1   Router(config-if)#e
+Sun Feb 9 12:53:40 2020   Router1   Router(config-if)#exit

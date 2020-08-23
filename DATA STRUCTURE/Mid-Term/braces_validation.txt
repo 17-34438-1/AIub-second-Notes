@@ -1,0 +1,117 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+#include <iostream>
+using namespace std;
+
+int size = 1;
+char *arr = new char[size];
+int top = -1;
+
+void resize()
+{
+	char *newarr = new char[size * 2];
+	for(int i = 0; i <= top; i++)
+	{
+		newarr[i] = arr[i];
+	}
+	size = size * 2;
+	
+	delete [] arr;
+	arr = newarr;
+}
+
+void push(char value)
+{
+	if(top < size - 1)
+	{
+		top++;
+		arr[top] = value;
+	}
+	else
+	{
+		resize();
+		top++;
+		arr[top] = value;
+	}
+}
+
+void pop()
+{
+	if(top <= -1)
+	{
+		cout << "cannot pop, stack empty" << endl;
+	}
+	else
+	{
+		top--;
+	}
+}
+
+void print()
+{
+	cout << "Current Stack: ";
+	for(int i = 0; i <= top; i++)
+	{
+		cout << arr[i] << "  ";
+	}
+	cout << endl;
+}
+
+int main()
+{
+	string str = "[(])]";
+	string message = "";
+
+	for(int i = 0; i < str.size(); i++)
+	{
+		char ch = str.at(i);
+		if(ch == '(' || ch == '{' || ch == '[')
+		{
+			push(ch);
+		}
+		else if(ch == ')' || ch == '}' || ch == ']')
+		{
+			if(top == -1)
+			{
+				message = "Wrong expression";
+				break;
+			}
+
+			char stk_ch = arr[top];
+			if(stk_ch == '(' && ch == ')')
+			{
+				pop();
+				continue;
+			}
+			else if(stk_ch == '{' && ch == '}')
+			{
+				pop();
+				continue;
+			}
+			else if(stk_ch == '[' && ch == ']')
+			{
+				pop();
+				continue;
+			}
+			else
+			{
+				message = "Wrong expression";
+				break;
+			}
+		}
+
+	}
+	if(top != -1)
+	{
+		message = "Wrong expression";
+	}
+	else
+	{
+		message = "Correct Expression";
+	}
+	cout << message << endl;
+
+	return 0;
+}

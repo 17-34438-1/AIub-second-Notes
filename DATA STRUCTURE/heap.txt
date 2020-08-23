@@ -1,0 +1,118 @@
+#include <iostream>
+using namespace std;
+
+const int size = 20;
+int arr[size];
+int count;
+
+void Adjust_From_Bottom(int startIndex, int endIndex)
+{
+	int item = arr[count];
+	int i = count;
+	while(i/2 >= 1)
+	{
+		if(arr[i/2] < item)
+		{
+			arr[i] = arr[i/2];
+			i = i/2;
+		}
+		else
+		{
+			break;
+		}
+	}
+	arr[i] = item;
+}
+
+void Adjust_From_Top(int startIndex, int endIndex)
+{
+	int item = arr[startIndex];
+	int i = startIndex * 2;
+	while(i <= endIndex)
+	{
+		if(i+1 <= endIndex && arr[i+1] > arr[i])
+		{
+			i = i+1;
+		}
+
+		if(item >= arr[i])
+		{
+			break;
+		}
+		else
+		{
+			arr[i/2] = arr[i];
+			i = i*2;
+		}
+	}
+	arr[i/2] = item;
+}
+
+void Add(int value)
+{
+	if(count < size-1)
+	{
+		count++;
+		arr[count] = value;
+		Adjust_From_Bottom(count, 1);
+	}
+	else
+	{
+		cout << "Heap is FULL!!" << endl;
+	}
+}
+
+void Remove()
+{
+	if(count > 0)
+	{
+		arr[1] = arr[count];
+		count--;
+		Adjust_From_Top(1, count);
+	}
+	else
+	{
+		cout << "Heap is EMPTY!!" << endl;
+	}
+}
+
+void Print()
+{
+	cout << "Array: ";
+	for(int i = 1; i <= count; i++)
+	{
+		cout << arr[i] << "  ";
+	}
+	cout << endl;
+}
+
+void HeapSort()
+{
+	for(int i = count; i > 1; i--)
+	{
+		int t = arr[i];
+		arr[i] = arr[1];
+		arr[1] = t;
+
+		Adjust_From_Top(1, i-1);
+	}
+}
+
+int main()
+{
+	Add(50);
+	Add(62);
+	Add(47);
+	Add(31);
+	Add(45);
+	Add(58);
+	Add(29);
+	Add(86);
+	Print();
+
+	Remove();
+	Print();
+
+	HeapSort();
+	Print();
+}
